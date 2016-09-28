@@ -1,0 +1,14 @@
+﻿<UserControl x:Class="DNVLibrary.Interact.Top"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" Initialized="UserControl_Initialized">
+    <Grid>
+        <StackPanel Orientation="Horizontal" >
+            <TextBlock Text="选择规划方案：" VerticalAlignment="Center" Foreground="Yellow"/>
+            <ComboBox x:Name="cmbProjects" Width="100" Height="24" DisplayMemberPath="prjName" SelectedValuePath="prjID" />
+        </StackPanel>
+    </Grid>
+</UserControl>

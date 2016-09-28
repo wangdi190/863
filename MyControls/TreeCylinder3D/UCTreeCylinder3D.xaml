@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="MyControlLibrary.Controls3D.TreeCylinder3D.UCTreeCylinder3D"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
+             xmlns:share3d="clr-namespace:MyClassLibrary.Share3D;assembly=MyClassLibrary"
+             xmlns:local="clr-namespace:MyControlLibrary.Controls3D.TreeCylinder3D"
+             xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1300" Loaded="UserControl_Loaded" Initialized="UserControl_Initialized">
+    <Grid x:Name="grdMain">
+        <Viewport3D x:Name="mainViewport3D">
+            <!--<Viewport3D x:Name="mainViewport3D" MouseWheel="mainViewport3D_MouseWheel" MouseDown="mainViewport3D_MouseDown" MouseLeave="mainViewport3D_MouseLeave" MouseUp="mainViewport3D_MouseUp" MouseMove="mainViewport3D_MouseMove" IsManipulationEnabled="True" ManipulationInertiaStarting="mainViewport3D_ManipulationInertiaStarting" ManipulationStarting="mainViewport3D_ManipulationStarting" ManipulationStarted="mainViewport3D_ManipulationStarted" ManipulationDelta="mainViewport3D_ManipulationDelta" ManipulationCompleted="mainViewport3D_ManipulationCompleted">-->
+            <Viewport3D.Camera>
+                <PerspectiveCamera x:Name="camera" Position="0,0,40" LookDirection="0,0,-1" UpDirection="0,1,0" FieldOfView="45" >
+                    <PerspectiveCamera.Transform>
+                        <MatrixTransform3D x:Name="cameratransform"/>
+                    </PerspectiveCamera.Transform>
+                </PerspectiveCamera>
+            </Viewport3D.Camera>
+            <Viewport3D.Children>
+                <ModelVisual3D x:Name="ModelLight">
+                    <!--Transform="{Binding ElementName=camera, Path=Transform}">-->
+                    <ModelVisual3D.Content>
+                        <Model3DGroup>
+                            <DirectionalLight Color="White" Direction="0.2,0.2,-1" />
+                            <AmbientLight Color="DarkGray" />
+                        </Model3DGroup>
+                    </ModelVisual3D.Content>
+                </ModelVisual3D>
+
+
+                <ModelVisual3D x:Name="Model0">
+                    <share3d:Ground3D x:Name="ground"/>
+                    <ModelVisual3D x:Name="modelcube">
+                        <ModelVisual3D.Content>
+                            <Model3DGroup x:Name="mgAll">
+                                <Model3DGroup x:Name="cubeGroup">
+                                </Model3DGroup>
+                                <Model3DGroup x:Name="mgCurve">
+
+                                </Model3DGroup>
+                            </Model3DGroup>
+                        </ModelVisual3D.Content>
+                    </ModelVisual3D>
+                </ModelVisual3D>
+            </Viewport3D.Children>
+
+        </Viewport3D>
+        <TextBlock x:Name="title"  HorizontalAlignment="Center" Margin="10" FontSize="28" Foreground="Aqua" Height="40" VerticalAlignment="Top" >
+                        <TextBlock.Effect>
+                <DropShadowEffect BlurRadius="8" ShadowDepth="3" />
+            </TextBlock.Effect>
+        </TextBlock>
+        <share3d:Controller3D x:Name="controller3D"/>
+        <!--细节-->
+        <local:UCTreeDataDetail x:Name="UCDetail" Visibility="Hidden"/>
+
+        <Popup Name="toolTips">
+            <Popup.AllowsTransparency>True</Popup.AllowsTransparency>
+            <Border CornerRadius="10" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="White" Offset="0" />
+                        <GradientStop Color="#FFC1C5FF" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <TextBlock x:Name="ttContent"  Padding="3" VerticalAlignment="Top" TextWrapping="Wrap"/>
+                </Grid>
+            </Border>
+        </Popup>
+
+    </Grid>
+</UserControl>
